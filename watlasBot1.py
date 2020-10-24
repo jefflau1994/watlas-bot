@@ -130,12 +130,11 @@ def bot1():
     
     browser.quit()
 
-#while (1):
-#    bot1()
-#    time.sleep(900)
+while (1):
+    bot1()
+    time.sleep(900)
 
-bot1()
-time.sleep(600)
+
 
 
 
