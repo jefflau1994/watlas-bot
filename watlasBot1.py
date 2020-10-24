@@ -61,7 +61,7 @@ def bot1():
     
     #print to console
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(localtime+"bread:"+str(breadCount)+"/1000"+"wine:"+str(wineCount)+"/500"+"egg:"+str(eggCount)+"/1600"+"ship1:"+str(ship1count)+"/50"+"Game Time:"+str(int(gameTime))+"h")
+    print(localtime+"\t"+"bread:"+str(breadCount)+"/1000\t"+"wine:"+str(wineCount)+"/500\t"+"egg:"+str(eggCount)+"/1600\t"+"ship1:"+str(ship1count)+"/50\t"+"Game Time:"+str(int(gameTime))+"h")
     
     #補充庫存(麵包 & 酒 & 蛋 & 船)
     if breadCount == 0:
