@@ -58,7 +58,11 @@ def bot1():
     hour = float(hour)
     minute = float(minute)/60
     gameTime = hour + minute
-
+    
+    #print to console
+    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print(localtime+"bread:"+str(breadCount)+"/1000"+"wine:"+str(wineCount)+"/500"+"egg:"+str(eggCount)+"/1600"+"ship1:"+str(ship1count)+"/50"+"Game Time:"+str(int(gameTime))+"h")
+    
     #補充庫存(麵包 & 酒 & 蛋 & 船)
     if breadCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!0!18&bk=m!&')
@@ -117,16 +121,8 @@ def bot1():
         element.click()
         gameTime -= (int(num)-1)
         print("store swept")
-    
-    #print to console
-    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(localtime)
-    print("bread:\t" + str(breadCount) + " / 1000")
-    print("wine:\t" + str(wineCount) + " / 500")
-    print("egg:\t" + str(eggCount) + " / 1600")
-    print("ship1:\t" + str(ship1count) + " / 50")
-    print("Game Time:\t" + str(gameTime) + " hour")
-    
+
+        
     #記錄庫存到txt      
     #record = [localtime, "\t", str(breadCount), "\t", str(wineCount), "\t", str(eggCount), "\t", str(ship1count), "\n"]
     #file1 = open("watlasRecord.txt", "a+")
