@@ -27,6 +27,7 @@ def bot1():
         element = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/center/form/input[1]")))
     except:
         browser.quit()
+        print("login failed")
         return
     element.send_keys(USERNAME)
     element = browser.find_element_by_xpath('/html/body/center/form/input[2]')
@@ -66,6 +67,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
+        print("bread purchased")
 
     if wineCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!1!19&bk=m!&')
@@ -74,6 +76,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
+        print("wine purchased")
 
     if eggCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!9!90&bk=m!&')
@@ -82,6 +85,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
+        print("egg purchased")
 
     if (ship1count == 0 and gameTime > 33.8): 
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!3!15&bk=m!&')
@@ -100,6 +104,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[6]')
         element.click()
         gameTime -=33.8
+        print("ship 1 manufactured")
 
     #打掃
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=sweep')
@@ -111,15 +116,16 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[3]')
         element.click()
         gameTime -= (int(num)-1)
+        print("store swept")
     
     #print to console
-    localtime = time.asctime(time.localtime(time.time())) 
+    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print(localtime)
-    print("bread:" + str(breadCount))
-    print("wine:" + str(wineCount))
-    print("egg:" + str(eggCount))
-    print("ship1:" + str(ship1count))
-    print(str(gameTime))
+    print("bread:\t" + str(breadCount) + " / 1000")
+    print("wine:\t" + str(wineCount) + " / 500")
+    print("egg:\t" + str(eggCount) + " / 1600")
+    print("ship1:\t" + str(ship1count) + " / 50")
+    print("Game Time:\t" + str(gameTime) + " hour")
     
     #記錄庫存到txt      
     #record = [localtime, "\t", str(breadCount), "\t", str(wineCount), "\t", str(eggCount), "\t", str(ship1count), "\n"]
