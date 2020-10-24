@@ -122,10 +122,10 @@ def bot1():
     print(str(gameTime))
     
     #記錄庫存到txt      
-    record = [localtime, "\t", str(breadCount), "\t", str(wineCount), "\t", str(eggCount), "\t", str(ship1count), "\n"]
-    file1 = open("watlasRecord.txt", "a+")
-    file1.writelines(record)
-    file1.close()
+    #record = [localtime, "\t", str(breadCount), "\t", str(wineCount), "\t", str(eggCount), "\t", str(ship1count), "\n"]
+    #file1 = open("watlasRecord.txt", "a+")
+    #file1.writelines(record)
+    #file1.close()
     
     
     browser.quit()
@@ -135,6 +135,7 @@ def bot1():
 #    time.sleep(900)
 
 bot1()
+time.sleep(600)
 
 
 
