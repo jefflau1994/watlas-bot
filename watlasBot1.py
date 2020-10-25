@@ -62,7 +62,7 @@ def bot1():
     
     #ACTION print to console
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"str(ship2count)+"\t時間:"+str(int(gameTime))+"h")
+    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"+str(ship2count)+"\t時間:"+str(int(gameTime))+"h")
     
     #ACTION re-stock inventory (bread & wine & egg & ship 1/2)
     if breadCount == 0:
