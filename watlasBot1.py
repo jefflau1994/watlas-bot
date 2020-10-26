@@ -135,8 +135,8 @@ def bot1():
     seed1count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[2]/td[4]').text[0])
     seed2count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[3]/td[4]').text[0])
     seed3count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[4]/td[4]').text[0])
-    if browser.find_elements_by_xpath("/html/body/center/form/input[3]").size() > 0:
-        element = browser.find_elements_by_xpath("/html/body/center/form/input[3]")
+    if browser.find_elements_by_xpath("/html/body/center/form/input[3]"):
+        element = browser.find_element_by_xpath("/html/body/center/form/input[3]")
         element.click()
         print("已賣種子")
     if seed1count == 0:
