@@ -27,7 +27,7 @@ def bot1():
         element = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/center/form/input[1]")))
     except:
         browser.quit()
-        print("login failed")
+        print("登入失敗")
         return
     element.send_keys(USERNAME)
     element = browser.find_element_by_xpath('/html/body/center/form/input[2]')
@@ -35,7 +35,7 @@ def bot1():
     element = browser.find_element_by_xpath('/html/body/center/form/input[4]')
     element.click()
     
-    #READ inventory & game time
+    #讀取 庫存&遊戲時間
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi')
     
     breadCount = int(wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/center/table[3]/tbody/tr[2]/td[6]'))).text[:-1])
@@ -60,11 +60,11 @@ def bot1():
     minute = float(minute)/60
     gameTime = hour + minute
     
-    #ACTION print to console
+    #行動 Print to console
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"+str(ship2count)+"\t時間:"+str(int(gameTime))+"h")
+    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"+str(ship2count)+"\t時間:"+str(int(gameTime))+"h\n")
     
-    #ACTION re-stock inventory (bread & wine & egg & ship 1/2)
+    #行動 補充庫存 (包 & 酒 & 蛋 & 船)
     if breadCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!0!18&bk=m!&')
         element = browser.find_element_by_xpath('/html/body/center/form/input[7]')
@@ -72,7 +72,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
-        print("bread purchased")
+        print("已買包")
 
     if wineCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!1!19&bk=m!&')
@@ -81,7 +81,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
-        print("wine purchased")
+        print("已買酒")
 
     if eggCount == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!9!90&bk=m!&')
@@ -90,7 +90,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[8]')
         element.click()
         gameTime -=0.217
-        print("egg purchased")
+        print("已買蛋")
 
     if (ship1count == 0 and gameTime > 11.3): 
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!3!15&bk=m!&')
@@ -109,7 +109,7 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[6]')
         element.click()
         gameTime -=11.3
-        print("ship 1 manufactured")
+        print("已造船1")
 
     if (ship2count == 0 and gameTime > 8.77): 
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=buy&buy=0!3!15&bk=m!&')
@@ -128,21 +128,40 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[6]')
         element.click()
         gameTime -=8.77
-        print("ship 2 manufactured")
+        print("已造船2")
 
-    #ACTION buy seed
+    #行動 買賣種子
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=manor')
     seed1count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[2]/td[4]').text[0])
     seed2count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[3]/td[4]').text[0])
     seed3count = int(browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr[4]/td[4]').text[0])
+    if browser.find_elements_by_xpath("/html/body/center/form/input[3]").size() > 0:
+        element = browser.find_elements_by_xpath("/html/body/center/form/input[3]")
+        element.click()
+        print("已賣種子")
     if seed1count == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=manor-m&&buy=0&bk=manor')
+        element = browser.find_element_by_xpath('/html/body/center/form/input[4]')
+        element.send_keys("20")
+        element = browser.find_element_by_xpath('/html/body/center/form/input[5]')
+        element.click()
+        print("已買種子1")
     if seed2count == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=manor-m&&buy=1&bk=manor')
+        element = browser.find_element_by_xpath('/html/body/center/form/input[4]')
+        element.send_keys("20")
+        element = browser.find_element_by_xpath('/html/body/center/form/input[5]')
+        element.click()
+        print("已買種子2")
     if seed3count == 0:
         browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=manor-m&&buy=2&bk=manor')
+        element = browser.find_element_by_xpath('/html/body/center/form/input[4]')
+        element.send_keys("20")
+        element = browser.find_element_by_xpath('/html/body/center/form/input[5]')
+        element.click()
+        print("已買種子3")
 
-    #ACTION sweep the store
+    #行動 打掃
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=sweep')
     rubbish_text = browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr/td[2]').text
     num = re.findall(r"\d+", rubbish_text)[1]
@@ -152,8 +171,18 @@ def bot1():
         element = browser.find_element_by_xpath('/html/body/center/form/input[3]')
         element.click()
         gameTime -= (int(num)-1)
-        print("store swept")
+        print("已打掃")
 
+    #行動 買狗
+    browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=shop-m')
+    element = browser.find_elements_by_partial_link_text("看門狗")
+    if element:
+        browser.find_element_by_partial_link_text("看門狗").click()
+        if browser.find_elements_by_xpath('/html/body/center/form/input[7]'):
+            browser.find_element_by_xpath('/html/body/center/form/input[7]').send_keys("1")
+            browser.find_element_by_xpath('/html/body/center/form/input[8]').click()
+            print("已買看門狗")
+        
         
     #記錄庫存到txt      
     #record = [localtime, "\t", str(breadCount), "\t", str(wineCount), "\t", str(eggCount), "\t", str(ship1count), "\n"]
