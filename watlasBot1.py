@@ -162,9 +162,14 @@ def bot1():
     #行動 打掃
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=sweep')
     rubbish_text = browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr/td[2]').text
-    num = re.findall(r"\d+", rubbish_text)[1]
-    rubbish = re.findall(r"\d+", rubbish_text)[0]
-    if (int(num) > 1 and num and gameTime > (int(num)-1)):
+    if (re.findall(r"\d+", rubbish_text) == []):
+        num = "0"
+        rubbish = "0"
+    else:
+        num = re.findall(r"\d+", rubbish_text)[1]
+        rubbish = re.findall(r"\d+", rubbish_text)[0]
+    
+    if (int(num) > 1 and gameTime > (int(num)-1)):
         element = browser.find_element_by_xpath('/html/body/center/form/input[2]')
         element.send_keys(str(int(num)-1))
         element = browser.find_element_by_xpath('/html/body/center/form/input[3]')
