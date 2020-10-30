@@ -60,9 +60,7 @@ def bot1():
     minute = float(minute)/60
     gameTime = hour + minute
     
-    #行動 Print to console
-    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"+str(ship2count)+"\t時間:"+str(int(gameTime))+"h")
+    
     
     #行動 補充庫存 (包 & 酒 & 蛋 & 船)
     if breadCount == 0:
@@ -165,6 +163,7 @@ def bot1():
     browser.get('http://watlas.fantasyarea.com/watlas/action.cgi?key=sweep')
     rubbish_text = browser.find_element_by_xpath('/html/body/center/table[3]/tbody/tr/td[2]').text
     num = re.findall(r"\d+", rubbish_text)[1]
+    rubbish = re.findall(r"\d+", rubbish_text)[0]
     if (int(num) > 1 and num and gameTime > (int(num)-1)):
         element = browser.find_element_by_xpath('/html/body/center/form/input[2]')
         element.send_keys(str(int(num)-1))
@@ -182,6 +181,10 @@ def bot1():
             browser.find_element_by_xpath('/html/body/center/form/input[7]').send_keys("1")
             browser.find_element_by_xpath('/html/body/center/form/input[8]').click()
             print("已買看門狗")
+            
+    #行動 Print to console
+    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print(localtime+"\t包:"+str(breadCount)+"\t酒:"+str(wineCount)+"\t蛋:"+str(eggCount)+"\t船1:"+str(ship1count)+"\t船2:"+str(ship2count)+"\t時間:"+str(int(gameTime))+"h\t垃圾:"+rubbish+"kg")
         
         
     #記錄庫存到txt      
